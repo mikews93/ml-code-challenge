@@ -1,0 +1,8 @@
+@function bp($bp) {
+  @return map-get($breakpoints, $bp);
+}
+
+@function container($container-size, $true-val: false) {
+  @return map-get($container-sizes, $container-size);
+}
+  

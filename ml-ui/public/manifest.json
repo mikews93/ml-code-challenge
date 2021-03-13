@@ -1,0 +1,25 @@
+{
+  "short_name": "MerLibre",
+  "name": "Mercado libre front end test",
+  "icons": [
+    {
+      "src": "assets/Logo_ML.png",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/Logo_ML.png",
+      "type": "image/png",
+      "sizes": "53x56"
+    },
+    {
+      "src": "assets/Logo_ML@2x.png",
+      "type": "image/png",
+      "sizes": "106x72"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}

@@ -1,0 +1,16 @@
+@import '../../_globals/colors';
+
+.breadcrumb {
+  padding: 16px 0;
+  font-size: 1rem;
+  display: flex;
+  color: $gray;
+
+  .category {
+    padding: 5px;
+  }
+
+  .last-category {
+    font-weight: 500;
+  }
+}

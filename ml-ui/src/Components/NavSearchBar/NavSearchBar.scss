@@ -1,0 +1,54 @@
+@import '../../_globals/colors.scss';
+
+.nav-layout {
+  position: relative;
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  justify-content: space-around;
+  background-color: $brand;
+  padding: 10px;
+
+  .content {
+    display: flex;
+    
+    .search {
+      width: 100%;
+      min-width: 200px;
+
+      .search-box {
+        background-color: white;
+        width: calc(100% - 100px);
+        border-radius: 3px 0 0 3px;
+        padding: 10px 20px;
+        margin-left: 10px;
+        border: none;
+        border-bottom: 1px solid transparent;
+        font-size: 1rem;
+
+        &:focus {
+          border-bottom: 1px solid $input-focus;
+        }
+      }
+      .search-btn {
+        border: none;
+        border-radius: 0 3px 3px 0;
+        background-color: $lightest-gray;
+        padding: 0.55rem 1rem;
+        transform: translateY(3px);
+      
+        &:hover {
+          background-color: $light-gray;
+        }
+
+        &:active {
+          background-color: $lightest-gray;
+        }
+
+        .search-icon {
+          transform: translateY(2px);
+        }
+      }
+    }
+  }
+}

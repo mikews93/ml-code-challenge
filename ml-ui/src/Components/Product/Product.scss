@@ -1,0 +1,46 @@
+@import '../../_globals/colors';
+@import '../../_globals/variables';
+
+.product {
+  background-color: white;
+  padding: 32px;
+  border-radius: $border-radius;
+
+  .image {
+    width: 680px;
+  }
+
+  .description-title {
+    padding: 32px 0;
+    font-size: $xLarge;
+    color: $gray;
+  }
+
+  .description-content {
+    color: $light-gray;
+    font-size: $medium;
+  }
+
+  .condition {
+    white-space: nowrap;
+    font-size: $normal;
+    margin-bottom: $medium;
+  }
+  .title {
+    font-size: $larger;
+    font-weight: 900;
+  }
+
+  .price {
+    font-size: $xxxLarge;
+    margin: 32px 0;
+  }
+
+  .buy-btn {
+    background-color: $primary;
+    padding: 14px 46px;
+    text-transform: capitalize;
+    font-size: larger;
+    color: white;
+  }
+}

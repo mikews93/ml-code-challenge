@@ -1,0 +1,104 @@
+@import '../_globals//colors';
+@import '../_globals/mixings';
+@import '../_globals/functions';
+
+$breakpoints: (
+  na: 0px,
+  // For BS grid
+    xs: 320px,
+  // Smartphone
+    sm: 600px,
+  // Tablets
+    md: 900px,
+  // Tablets Landscape and small desktops
+    lg: 1200px,
+  // Desktops
+    xl: 1800px,
+  // Large Desktop
+);
+
+
+$container-sizes: (
+  sm: map-get($breakpoints, sm) - 30px,
+  md: map-get($breakpoints, md) - 40px,
+  lg: map-get($breakpoints, lg) - 50px,
+  xl: map-get($breakpoints, xl) - 400px
+);
+
+.container {
+  padding-right: 1rem;
+  padding-left: 1rem;
+
+  &:not(.is-fluid) {
+    margin: 0 auto;
+
+    @each $bp, $container-size in $container-sizes {
+      @include min(#{bp(#{$bp})}) {
+        width: 100%;
+        max-width: container(#{$bp});
+      }
+    }
+  }
+}
+
+@each $bp, $container-size in $container-sizes {
+  .container-#{$bp} {
+    margin: 0 auto;
+    padding-right: 1rem;
+    padding-left: 1rem;
+    width: 100%;
+
+    $i: index($container-sizes, $bp $container-size);
+
+    @for $j from $i through length($container-sizes) {
+      @include min(#{bp(nth(nth($container-sizes, $j), 1))}) {
+        max-width: container(#{nth(nth($container-sizes, $j), 1)});
+      }
+    }
+  }
+}
+
+input, button {
+  outline: none;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+
+  background-color: $lightest-gray;
+  font-family: 'Roboto', sans-serif;
+  color: $black;
+}
+
+.flex {
+  display: flex;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+}
+
+.padding-1 {
+  padding: 0.25rem;
+}
+
+.padding-2 {
+  padding: 0.5rem;
+}
+
+.padding-3 {
+  padding: 0.75rem;
+}
+
+.padding-4 {
+  padding: 1rem;
+}
+
