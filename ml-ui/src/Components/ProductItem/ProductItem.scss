@@ -38,7 +38,7 @@
     width: 100%;
 
     .price {
-      font-size: 24px;
+      font-size: $larger;
       margin-bottom: 16px;
 
       &:hover {
@@ -47,11 +47,11 @@
     }
 
     .title {
-      font-size: 18px;
+      font-size: $large;
     }
 
     .state {
-      font-size: 12px;
+      font-size: $small;
       white-space: nowrap;
     }
   }

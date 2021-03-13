@@ -8,10 +8,15 @@
   justify-content: space-around;
   background-color: $brand;
   padding: 10px;
-
+  transition: .2s;
+  
   .content {
     display: flex;
     
+    .logo {
+      cursor: pointer;
+    }
+
     .search {
       width: 100%;
       min-width: 200px;

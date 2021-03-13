@@ -1,15 +1,11 @@
 import React, { ChangeEvent, FunctionComponent, useState } from 'react';
 import { useHistory } from 'react-router';
 
-import { SEARCH_ITEM_URL } from '../../constants';
+import { HOME_URL, SEARCH_ITEM_URL } from '../../constants';
 import { useQuery } from '../../utils';
 
 // styles
 import './NavSearchBar.scss';
-
-// interface NavSearchBarProps {
-//   onSubmit: (searchText:string) => void
-// }
 
 export const NavSearchBar: FunctionComponent = () => {
 
@@ -19,12 +15,15 @@ export const NavSearchBar: FunctionComponent = () => {
    * State
    */
   const [searchValue, setSearchValue] = useState(search || '');
+
   /**
    * History
    */
   const history = useHistory();
 
-
+  /**
+   * Callbacks
+   */
   const onChangeSearchBox = (event: ChangeEvent<HTMLInputElement>) => {
     const text = event.target.value;
     setSearchValue(text)
@@ -42,7 +41,7 @@ export const NavSearchBar: FunctionComponent = () => {
 
   return <div className="nav-layout">
     <div className="container content">
-      <img src="/assets/Logo_ML.png" alt="mercado libre" className="logo"/>
+      <img src="/assets/Logo_ML.png" alt="mercado libre" className="logo" onClick={() => history.push(HOME_URL)} />
       <div className="search">
         <input 
           type="text" 
