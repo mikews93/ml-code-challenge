@@ -7,10 +7,28 @@
   color: $gray;
 
   .category {
-    padding: 5px;
+    cursor: pointer;
+
+    &:hover {
+      font-weight:600;
+      transition: .2s;
+    }
+
+    .material-icons {
+      width: 1rem;
+      height: 1.1rem;
+      padding: 0 .5rem 0 0;
+    }
   }
 
   .last-category {
     font-weight: 500;
+
+    span:nth-child(2) {
+      visibility: hidden;
+    }
+    span {
+      padding: 0.25rem;
+    }
   }
 }

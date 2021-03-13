@@ -1,11 +1,11 @@
 import React, { FunctionComponent } from 'react';
 import { useHistory } from 'react-router';
+
+import { ITEM_URL } from '../../constants';
 import { Product } from '../../types/Product';
 import {formatPrice } from '../../utils';
 
 import './ProductItem.scss';
-
-
 interface ProductItemProps {
   product: Product
 }
@@ -15,7 +15,7 @@ export const ProductItem: FunctionComponent<ProductItemProps> = ({product}) => {
   const history = useHistory()
 
   const goToDetails = () => {
-    history.push(`/items/${product.id}`);
+    history.push(`${ITEM_URL}/${product.id}`);
   }
 
   return <div className="product-item" >

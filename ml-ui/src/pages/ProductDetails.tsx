@@ -3,7 +3,7 @@ import { CircularProgress, Snackbar } from '@material-ui/core';
 import { Alert } from '@material-ui/lab';
 import { useParams } from 'react-router';
 
-import { getItemById } from '../api/routes';
+import { getItemById } from '../Api/routes';
 import { Breadcrumb } from '../Components/Breadcrumb/Breadcrumb';
 import { Product } from '../Components/Product/Product';
 import { Product as ProductType } from '../types/Product';
@@ -38,6 +38,9 @@ export const ProductDetails: FunctionComponent = () => {
     .finally(()=> setIsLoading(false));
   }, [id])
 
+  /**
+   * Callbacks
+   */
   const handleOpen = () => {
     setOpen(true);
   };

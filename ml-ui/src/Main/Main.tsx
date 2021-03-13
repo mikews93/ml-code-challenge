@@ -2,10 +2,9 @@ import React, { FunctionComponent } from 'react';
 import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom"
 
 import { NavSearchBar } from '../Components/NavSearchBar/NavSearchBar';
-import { SearchList } from '../pages/SearchList';
-import { ProductDetails } from '../pages/ProductDetails'
+import { SearchList } from '../Pages/SearchList';
+import { ProductDetails } from '../Pages/ProductDetails'
 import './Main.scss';
-
 
 export const Main: FunctionComponent = () => {
   return <>

@@ -3,7 +3,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import Snackbar from '@material-ui/core/Snackbar';
 import { Alert } from '@material-ui/lab';
 
-import { searchItems } from '../api/routes';
+import { searchItems } from '../Api/routes';
 import { Breadcrumb } from '../Components/Breadcrumb/Breadcrumb';
 import { ProductItem } from '../Components/ProductItem/ProductItem';
 import { useQuery } from '../utils';

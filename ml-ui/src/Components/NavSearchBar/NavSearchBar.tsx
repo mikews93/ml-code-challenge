@@ -1,5 +1,7 @@
 import React, { ChangeEvent, FunctionComponent, useState } from 'react';
 import { useHistory } from 'react-router';
+
+import { SEARCH_ITEM_URL } from '../../constants';
 import { useQuery } from '../../utils';
 
 // styles
@@ -29,7 +31,7 @@ export const NavSearchBar: FunctionComponent = () => {
   }
   
   const handleSubmit = () => {
-    history.push(`/items?search=${searchValue}`);
+    history.push(`${SEARCH_ITEM_URL}${searchValue}`);
   }
 
   const handleKeyPress = (event: any) => {

@@ -18,7 +18,7 @@ class itemsRouter {
    */
   private _configure() {
     this._router.get('/', async (req: Request, res: Response, next: NextFunction) => {
-      const result = await this._controller.listAllItems(req.query.q?.toString());
+      const result = await this._controller.listAllItems(req.query.q? encodeURIComponent(req.query.q.toString()): undefined);
       if(result.error){
         return res.status(500).send(result.error);
       }

@@ -36,7 +36,7 @@
         background-color: $lightest-gray;
         padding: 0.55rem 1rem;
         transform: translateY(3px);
-      
+        transition: .2s;
         &:hover {
           background-color: $light-gray;
         }
