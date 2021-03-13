@@ -14,15 +14,19 @@ class itemsController {
   private MLA_URL = process.env.MERCADO_LIBRE_API
 
   mapProduct (product: any) {
+    const price = `${product.price}`.split('.') || [];
+
     return {
       id: product.id,
       title: product.title,
       price: {
         currency: product.currency_id,
-        price: Math.floor(product.price),
-        decimals: Math.round(product.price % 1)
+        price: parseInt(price.shift() || ''),
+        decimals: parseInt(price.shift() || '')
       },
-      pictures: product.pictures?.length ? product.pictures.shift().url : '',
+      state: product.address?.state_name,
+      picture: product.pictures?.length ? product.pictures.shift().url : '',
+      thumbnail: product.thumbnail,
       condition: product.condition,
       free_shipping: !!product.shipping?.free_shipping,
       sold_quantity: product.sold_quantity
@@ -75,7 +79,7 @@ class itemsController {
         
         return {
           author,
-          category: categoryData,
+          categories: categoryData,
           item: {
             ...this.mapProduct(itemData),
             description: itemDetails.plain_text
