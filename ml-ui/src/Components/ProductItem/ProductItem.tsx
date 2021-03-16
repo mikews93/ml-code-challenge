@@ -27,9 +27,9 @@ export const ProductItem: FunctionComponent<ProductItemProps> = ({product}) => {
         <div className="price" onClick={goToDetails}>{formatPrice(product.price)}</div>
         <div className="title">{product.title}</div>
       </div>
-      <div>
-        <div className="state">{product.state}</div>
-      </div>
-    </div>    
+    </div>  
+    <div>
+      <div className="state">{product.state}</div>
+    </div>  
   </div>
 }

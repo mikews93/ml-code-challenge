@@ -13,9 +13,9 @@ export const ProductItemLoader: FunctionComponent = () => {
         <Skeleton width={100}/>
         <Skeleton width={500}/>
       </div>
-      <div>
-        <Skeleton width={300}/>
-      </div>
     </div>  
+    <div>
+      <Skeleton width={300}/>
+    </div>
   </div>
 }

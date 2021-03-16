@@ -1,4 +1,5 @@
 import React, { FunctionComponent, useContext, useEffect, useState } from 'react';
+import { Helmet } from 'react-helmet';
 
 import { searchItems } from '../Api/routes';
 import { Breadcrumb } from '../Components/Breadcrumb/Breadcrumb';
@@ -54,6 +55,10 @@ export const SearchList: FunctionComponent = () => {
 
 
   return <div className="search-list">
+    <Helmet>
+      <meta charSet="utf-8" />
+      <title>{`${search} en Mercado libre`}</title>
+    </Helmet>
     {
       isLoading
       ? <div className="mt-4">

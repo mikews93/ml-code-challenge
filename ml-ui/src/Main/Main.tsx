@@ -32,8 +32,6 @@ export const Main: FunctionComponent = () => {
       severity
     })
   }
-
-  console.log({isFetchingData});
   return <>
     <Router>
       <AppContext.Provider value={{
