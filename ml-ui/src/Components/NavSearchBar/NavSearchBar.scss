@@ -2,14 +2,13 @@
 
 .nav-layout {
   position: relative;
-  width: 100%;
   height: fit-content;
   display: flex;
   justify-content: space-around;
   background-color: $brand;
   padding: 10px;
   transition: .2s;
-  
+
   .content {
     display: flex;
     

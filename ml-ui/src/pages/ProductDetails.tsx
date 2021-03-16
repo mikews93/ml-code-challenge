@@ -1,12 +1,13 @@
-import React, { FunctionComponent, useEffect, useState } from 'react';
-import { CircularProgress, Snackbar } from '@material-ui/core';
-import { Alert } from '@material-ui/lab';
+import React, { FunctionComponent, useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 
 import { getItemById } from '../Api/routes';
 import { Breadcrumb } from '../Components/Breadcrumb/Breadcrumb';
 import { Product } from '../Components/Product/Product';
 import { Product as ProductType } from '../types/Product';
+import { ProductLoader } from '../Components/Product/ProductLoader';
+import { GlobalContext } from '../types/Toaster';
+import { AppContext } from '../Main/Main';
 
 export const ProductDetails: FunctionComponent = () => {
   const { id }: { id:string } = useParams()
@@ -18,13 +19,18 @@ export const ProductDetails: FunctionComponent = () => {
   const [categories, setCategories] = useState([])
   const [isLoading, setIsLoading] = useState(false)
 
-  const [open, setOpen] = useState(false);
+  /**
+ * Context
+ */
+  const { showToaster, setIsFetchingData } = useContext<GlobalContext>(AppContext);
+
 
   /**
    * Api call
    */
   useEffect(() => {
     setIsLoading(true);
+    setIsFetchingData(true);
     getItemById(id)
     .then(({data})=> {
       setProductDetails(data.item || {});
@@ -33,35 +39,27 @@ export const ProductDetails: FunctionComponent = () => {
     .catch(()=> {
       setProductDetails(null);
       setCategories([]);
-      handleOpen();
+      showToaster({
+        message: 'Vaya!, lo lamentamos hubo un error',
+        severity: 'error'
+      });
     })
-    .finally(()=> setIsLoading(false));
+    .finally(()=> {
+      setIsLoading(false);
+      setIsFetchingData(false);
+    });
+    // eslint-disable-next-line 
   }, [id])
-
-  /**
-   * Callbacks
-   */
-  const handleOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-
   return <>
     {
       isLoading
-      ? <div className="center padding-4"><CircularProgress /></div>
+      ? <div className="mt-4">
+        <ProductLoader />
+      </div>
       : productDetails && <>
         <Breadcrumb categories={categories}/>
         <Product product={productDetails} />
       </>
     }
-    <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-      <Alert onClose={handleClose} severity="success">
-        This is a success message!
-      </Alert>
-    </Snackbar>
   </>
 }

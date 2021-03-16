@@ -1,5 +1,6 @@
 import { Product } from './types/Product';
 import { useLocation } from "react-router";
+import { cloneElement, ReactElement } from 'react';
 
 /**
  * custom hook to get query params
@@ -21,4 +22,14 @@ export const formatPrice = ({currency, price, decimals}: Product['price'])=> {
   })
 
   return formatter.format(parseFloat(`${price}.${decimals}`))
+}
+
+/**
+ * Repeats element a determinate number of times
+ * @param times number of times to repeat the element
+ * @param element react node to repeat
+ * @returns elements repeated
+ */
+export const repeatElement = (times: number = 1, element: ReactElement) => {
+  return [...Array(times)].map((_,index)=> cloneElement(element, { key: index}));
 }

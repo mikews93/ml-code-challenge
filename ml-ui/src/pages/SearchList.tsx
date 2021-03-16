@@ -1,13 +1,13 @@
-import React, { FunctionComponent, useEffect, useState } from 'react';
-import CircularProgress from '@material-ui/core/CircularProgress';
-import Snackbar from '@material-ui/core/Snackbar';
-import { Alert } from '@material-ui/lab';
+import React, { FunctionComponent, useContext, useEffect, useState } from 'react';
 
 import { searchItems } from '../Api/routes';
 import { Breadcrumb } from '../Components/Breadcrumb/Breadcrumb';
 import { ProductItem } from '../Components/ProductItem/ProductItem';
-import { useQuery } from '../utils';
+import { repeatElement, useQuery } from '../utils';
 import { Product } from '../types/Product';
+import { ProductItemLoader } from '../Components/ProductItem/ProductItemLoader';
+import { AppContext } from '../Main/Main';
+import { GlobalContext } from '../types/Toaster';
 
 export const SearchList: FunctionComponent = () => {
   let query = useQuery();
@@ -19,13 +19,18 @@ export const SearchList: FunctionComponent = () => {
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [open, setOpen] = useState(false);
+
+  /**
+   * Context
+   */
+  const { showToaster, setIsFetchingData } = useContext<GlobalContext>(AppContext);
 
   /**
    * Api call
    */
   useEffect(() => {
     setIsLoading(true);
+    setIsFetchingData(true);
     searchItems(search || '')
     .then(({data})=> {
       setProducts(data.items || []);
@@ -34,40 +39,35 @@ export const SearchList: FunctionComponent = () => {
     .catch(()=> {
       setProducts([]);
       setCategories([]);
-      handleOpen();
+      showToaster({
+        message: 'Vaya!, lo lamentamos hubo un error',
+        severity: 'error'
+      })
     })
-    .finally(()=> setIsLoading(false));
+    .finally(()=> {
+      setIsLoading(false);
+      setIsFetchingData(false);
+    });
+    // eslint-disable-next-line 
   }, [search])
 
-  /**
-   * Callbacks
-   */
-  const handleOpen = () => {
-    setOpen(true);
-  };
 
-  const handleClose = () => {
-    setOpen(false);
-  };
 
   return <div className="search-list">
-      {
-        isLoading
-        ? <div className="center padding-4"><CircularProgress /></div>
-        : <>
-            <Breadcrumb categories={categories} />
-            {
-              products && !!products.length ? products.map((product: Product)=> {
-                return <ProductItem product={product}  key={product.id}/>
-              }) :
-              <span>No se encontraron resultados</span>
-            }
-          </>
-      }
-       <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-        <Alert onClose={handleClose} severity="success">
-          This is a success message!
-        </Alert>
-      </Snackbar>
+    {
+      isLoading
+      ? <div className="mt-4">
+        {repeatElement(4, <ProductItemLoader />)}
+      </div>
+      : <>
+          <Breadcrumb categories={categories} />
+          {
+            products && !!products.length ? products.map((product: Product)=> {
+              return <ProductItem product={product}  key={product.id}/>
+            }) :
+            <span className="center">No se encontraron resultados</span>
+          }
+        </>
+    }
   </div>
 }

@@ -1,5 +1,6 @@
-import { Button } from '@material-ui/core';
 import React, { FunctionComponent } from 'react';
+import { Button } from '@material-ui/core';
+
 import { Product as ProductType } from '../../types/Product';
 import { formatPrice } from '../../utils';
 
