@@ -15,17 +15,17 @@ export function useQuery() {
  * @param price 
  * @returns string whit formatted number
  */
-export const formatPrice = ({currency, price, decimals}: Product['price'])=> {
-  const formatter = new Intl.NumberFormat(undefined,{
-    style:'currency',
+export const formatPrice = ({ currency, price, decimals }: Product['price']) => {
+  const formatter = new Intl.NumberFormat('es-AR', {
+    style: 'currency',
     currency
-  })
+  });
 
   return formatter.format(parseFloat(`${price}.${decimals}`))
 }
 
 /**
- * Repeats element a determinate number of times
+ * Repeats an element a determinate number of times
  * @param times number of times to repeat the element
  * @param element react node to repeat
  * @returns elements repeated

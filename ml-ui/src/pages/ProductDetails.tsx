@@ -6,7 +6,7 @@ import { Breadcrumb } from '../Components/Breadcrumb/Breadcrumb';
 import { Product } from '../Components/Product/Product';
 import { Product as ProductType } from '../Types/Product';
 import { ProductLoader } from '../Components/Product/ProductLoader';
-import { GlobalContext } from '../Types/Toaster';
+import { GlobalContext } from '../Types/GlobalContext';
 import { AppContext } from '../Main/Main';
 
 export const ProductDetails: FunctionComponent = () => {

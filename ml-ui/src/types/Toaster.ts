@@ -5,8 +5,3 @@ export interface Toaster {
     message: string;
     severity: Color;
 }
-
-export interface GlobalContext {
-    showToaster: (data: Partial<Toaster>) => void;
-    setIsFetchingData: React.Dispatch<React.SetStateAction<boolean>>
-}

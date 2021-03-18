@@ -1,5 +1,7 @@
-import axios from 'axios';
+import axios, { AxiosResponse } from 'axios';
 import dotenv from 'dotenv';
+import orderBy from 'lodash/orderBy';
+
 import { author } from '../../constants';
 
 /**
@@ -21,8 +23,8 @@ class itemsController {
       title: product.title,
       price: {
         currency: product.currency_id,
-        price: parseInt(price.shift() || ''),
-        decimals: parseInt(price.shift() || '')
+        price: parseInt(price.shift() || '')  || 0,
+        decimals: parseInt(price.shift() || '') || 0
       },
       state: product.address?.state_name,
       picture: product.pictures?.length ? product.pictures.shift().url : '',
@@ -33,29 +35,39 @@ class itemsController {
     }
   }
 
+  getCategory(categoryId: string) {
+    return axios.get(`${this.MLA_URL}/categories/${categoryId}`);
+  }
+
+  extractCategoryPath(categoryData: AxiosResponse<any>) {
+    if (!categoryData.data) {
+      return [];
+    }
+
+    return [...categoryData.data.path_from_root].map(({name})=> name)
+  }
+
+  async getCategoryMostResults(available_filters: any) {
+    const categoryFilter = [...available_filters].find(({ id }) => id === 'category');
+    let categories: string[] = [];
+    
+    if (categoryFilter && categoryFilter.values) {
+      const categoryMoreResults = orderBy(categoryFilter.values, 'results', 'desc').shift();
+      categories = this.extractCategoryPath(await this.getCategory(categoryMoreResults.id));
+    }
+
+    return categories
+  }
+
   async listAllItems(query: string = ':query') {
     try {
       const response = await axios.get(`${this.MLA_URL}/sites/MLA/search?q=${query}`);
-      
-      const categoryFilter = [...response.data.filters].find(({ id })=> id === 'category');
-      let categories: string[] = [];
-      if(categoryFilter){
-        const value = categoryFilter.values.shift();
-        categories = value.path_from_root ? [...value.path_from_root].map(({name})=> name) : []
-      }
+      const categories = await this.getCategoryMostResults(response.data.available_filters)
+      const items = response.data.results?.map(this.mapProduct) || [];
 
-      return {
-        author,
-        categories,
-        items: response.data.results 
-          ? response.data.results.map((item: any)=>this.mapProduct(item)) 
-          : []
-      }
+      return { author, categories, items }
     } catch (error) {
-      console.log({error})
-      return {
-        error
-      }
+      return { error }
     }
   }
   
@@ -69,17 +81,11 @@ class itemsController {
       if(item.data && details.data) {
         const itemData = item.data;
         const itemDetails = details.data;
-        let categoryData: string [] = []
-
-        const categoryResponse = await axios.get(`${this.MLA_URL}/categories/${itemData.category_id}`);
-        if(categoryResponse.data){
-          categoryData = [...categoryResponse.data.path_from_root].map(({name})=> name)
-        }
-        
+        const categories = this.extractCategoryPath(await this.getCategory(itemData.category_id))
         
         return {
           author,
-          categories: categoryData,
+          categories,
           item: {
             ...this.mapProduct(itemData),
             description: itemDetails.plain_text

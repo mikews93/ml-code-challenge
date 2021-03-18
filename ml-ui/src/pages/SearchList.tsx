@@ -8,7 +8,7 @@ import { repeatElement, useQuery } from '../utils';
 import { Product } from '../Types/Product';
 import { ProductItemLoader } from '../Components/ProductItem/ProductItemLoader';
 import { AppContext } from '../Main/Main';
-import { GlobalContext } from '../Types/Toaster';
+import { GlobalContext } from '../Types/GlobalContext';
 
 export const SearchList: FunctionComponent = () => {
   let query = useQuery();

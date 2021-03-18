@@ -4,7 +4,8 @@ export interface Product {
   price: {
     currency: string,
     price: number,
-    decimals: number
+    decimals: number,
+    symbol: string
   },
   state: string,
   picture: string,
