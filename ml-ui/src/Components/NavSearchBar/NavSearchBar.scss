@@ -19,6 +19,7 @@
     .search {
       width: 100%;
       min-width: 200px;
+      display:flex;
 
       .search-box {
         background-color: white;
@@ -39,7 +40,6 @@
         border-radius: 0 3px 3px 0;
         background-color: $lightest-gray;
         padding: 0.55rem 1rem;
-        transform: translateY(3px);
         transition: .2s;
         &:hover {
           background-color: $light-gray;

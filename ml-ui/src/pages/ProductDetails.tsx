@@ -4,9 +4,9 @@ import { useParams } from 'react-router';
 import { getItemById } from '../Api/routes';
 import { Breadcrumb } from '../Components/Breadcrumb/Breadcrumb';
 import { Product } from '../Components/Product/Product';
-import { Product as ProductType } from '../types/Product';
+import { Product as ProductType } from '../Types/Product';
 import { ProductLoader } from '../Components/Product/ProductLoader';
-import { GlobalContext } from '../types/Toaster';
+import { GlobalContext } from '../Types/Toaster';
 import { AppContext } from '../Main/Main';
 
 export const ProductDetails: FunctionComponent = () => {

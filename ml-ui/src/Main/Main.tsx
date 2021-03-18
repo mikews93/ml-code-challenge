@@ -6,7 +6,7 @@ import { Alert } from '@material-ui/lab';
 import { NavSearchBar } from '../Components/NavSearchBar/NavSearchBar';
 import { SearchList } from '../Pages/SearchList';
 import { ProductDetails } from '../Pages/ProductDetails'
-import { GlobalContext, Toaster } from '../types/Toaster';
+import { GlobalContext, Toaster } from '../Types/Toaster';
 import { HOME_URL, ITEM_BY_ID_URL, ITEM_URL } from '../constants';
 
 import './Main.scss';

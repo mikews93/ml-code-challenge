@@ -2,7 +2,7 @@ import React, { FunctionComponent } from 'react';
 import { Button } from '@material-ui/core';
 import Helmet from 'react-helmet';
 
-import { Product as ProductType } from '../../types/Product';
+import { Product as ProductType } from '../../Types/Product';
 import { formatPrice } from '../../utils';
 
 import './Product.scss';

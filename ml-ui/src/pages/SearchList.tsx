@@ -5,10 +5,10 @@ import { searchItems } from '../Api/routes';
 import { Breadcrumb } from '../Components/Breadcrumb/Breadcrumb';
 import { ProductItem } from '../Components/ProductItem/ProductItem';
 import { repeatElement, useQuery } from '../utils';
-import { Product } from '../types/Product';
+import { Product } from '../Types/Product';
 import { ProductItemLoader } from '../Components/ProductItem/ProductItemLoader';
 import { AppContext } from '../Main/Main';
-import { GlobalContext } from '../types/Toaster';
+import { GlobalContext } from '../Types/Toaster';
 
 export const SearchList: FunctionComponent = () => {
   let query = useQuery();

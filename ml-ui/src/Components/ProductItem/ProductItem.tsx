@@ -2,7 +2,7 @@ import React, { FunctionComponent } from 'react';
 import { useHistory } from 'react-router';
 
 import { ITEM_URL } from '../../constants';
-import { Product } from '../../types/Product';
+import { Product } from '../../Types/Product';
 import {formatPrice } from '../../utils';
 
 import './ProductItem.scss';

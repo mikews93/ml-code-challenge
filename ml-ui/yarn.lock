@@ -1931,6 +1931,14 @@
     "@types/history" "*"
     "@types/react" "*"
 
+"@types/react-router@^5.1.12":
+  version "5.1.12"
+  resolved "https://indigoag-217541722159.d.codeartifact.us-east-1.amazonaws.com:443/npm/indigoag.repository/@types/react-router/-/react-router-5.1.12.tgz#0f300e09468e7aed86e18241c90238c18c377e51"
+  integrity sha512-0bhXQwHYfMeJlCh7mGhc0VJTRm0Gk+Z8T00aiP4702mDUuLs9SMhnd2DitpjWFjdOecx2UXtICK14H9iMnziGA==
+  dependencies:
+    "@types/history" "*"
+    "@types/react" "*"
+
 "@types/react-transition-group@^4.2.0":
   version "4.4.1"
   resolved "https://indigoag-217541722159.d.codeartifact.us-east-1.amazonaws.com:443/npm/indigoag.repository/@types/react-transition-group/-/react-transition-group-4.4.1.tgz#e1a3cb278df7f47f17b5082b1b3da17170bd44b1"
